@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h2>哈哈</h2>
+    <script type="text/javascript">
+      var height = "about 5'10\" tall";
+      // alert(height);
+
+      var lennon = Object();
+      lennon.name = "John";
+      lennon.year = 1940;
+      lennon.living = false;
+
+      var temp_fahrenheit = 95;
+      var temp_celsius = (temp_fahrenheit -32) / 1.8;
+
+      function convertToCelsius(temp) {
+        var result = temp - 32;
+        result = result / 1.8;
+        return result;
+      }
+
+      console.log(convertToCelsius(95));
+
+      function square(num) {
+        total = num * num;
+        return total;
+      }
+      // total 首先是5，下面调用方法的时候执行了函数就被修改了。
+      var total = 5;
+      var number = square(20);
+      alert(total);
+      debugger;
+    </script>
+  </body>
+</html>
