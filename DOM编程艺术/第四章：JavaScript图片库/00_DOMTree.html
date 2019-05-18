@@ -31,23 +31,23 @@
     </ul>
 
     <script type="text/javascript">
-    // 兼容性封装
-      function getElementsByClassName(node, classname) {
-        if(getElementsByClassName){
-          // 使用现有方法
-          return node.getElementsByTagName(className)
-        } else {
-          // 过于老旧的浏览器原生不支持getElementsByClassName() 方法。
-          var result = new Array();
-          var elems = node.getElementsByTagName("*");
-          for(var i = 0; i<elems.length; i++) {
-            if(elems[i].className.indexOf(classname) !== -1){
-              results[result.length] = elems[i];
-            }
-          }
-          return results;
-        }
-      }
+    // document.getElementById(id)
+    // document.getElementsByTagName(tagName)
+    // document.getElementsByClassName(className)
+
+    console.log(document.getElementById("purchases"));
+    console.error(document.getElementsByTagName("li"));
+    console.warn(document.getElementsByTagName("li").length);
+
+    var items = document.getElementsByTagName("li");
+    for (var i = 0; i < items.length; i++) {
+      console.log(items[i]);
+    }
+    console.error(document.getElementsByTagName("*").length);
+    var shopping = document.getElementById("purchases");
+    var items = shopping.getElementsByTagName("*");
+
+    console.warn(document.getElementsByClassName("sale important"));
     </script>
   </body>
 </html>
