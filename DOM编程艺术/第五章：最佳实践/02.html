@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>向后兼容</title>
+</head>
+
+<body>
+
+  <a href="javascript:popUp('https://www.jd.com');">open jd</a>
+  <a href="https://www.jd.com" class="popUp">open taobao</a>
+  <script>
+    function popUp(winURL) {
+      window.open(winURL, "popUp", "width=320; height=480");
+    }
+
+    window.onload = prepareLink;
+
+    function prepareLink() {
+      // 保证古老浏览器不报出错误，就目前（2019年）来说，完全可以忽略
+      if (!document.getElementsByTagName) return false;
+
+      var links = document.getElementsByTagName("a");
+      for (var i = 0; i < links.length; i++) {
+        if (links[i].getAttribute("class") == "popUp") {
+          links[i].onclick = function () {
+            // debugger
+            popUp(this.getAttribute("href"));
+            return false;
+          }
+        }
+      }
+    }
+  </script>
+  <script>
+    // 尽量去减少访问dom元素，已提升性能和以及编写清爽代码
+    if (document.getElementsByClassName("a").length > 0) {
+      var links = document.getElementsByClassName("a");
+      for (var i = 0; i < links.length; i++) {
+        // 对每个链接进行处理
+      }
+    }
+    // 改善后
+    var links = document.getElementsByClassName("a");
+    if (links.length > 0) {
+      for (var i = 0; i < links.length; i++) {
+        // 对每个链接进行处理
+      }
+    }
+    // 压缩后代码 发布版本推荐使用
+    var links = document.getElementsByClassName("a");
+    if (links.length > 0) {
+      for (var i = 0; i < links.length; i++) {}
+    }
+  </script>
+</body>
+
+</html>

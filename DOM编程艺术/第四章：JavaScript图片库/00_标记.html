@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+  body {
+    color: #333;
+    background-color: #ccc;
+    margin: 1em 10%;
+  }
+  h1 {
+    color: #333;
+    background-color: transparent;
+  }
+  a {
+    color: #c60;
+    background-color: transparent;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  ul {
+    padding: 0;
+  }
+  li {
+    float: left;
+    padding: 1em;
+    list-style: none;
+  }
+  img {
+    display: block;
+    clear: both;
+  }
+  </style>
+  <title>Image Gallery</title>
+</head>
+<body>
+  <h1>Snapshots</h1>
+  <ul>
+    <li>
+        <a href="images/fireworks.jpg" title="一场烟花表演"  onclick="showPic(this);return false;">烟花秀</a>
+      </li>
+    <li>
+        <a href="images/coffee.jpg" title="一杯黑咖啡" onclick="showPic(this);return false;">咖啡</a>
+    </li> 
+    <li>
+        <a href="images/rose.jpg" title="一朵红红的玫瑰" onclick="showPic(this);return false;">玫瑰花</a>
+      </li>
+    <li>
+        <a href="images/fireworks.jpg" title="一口著名的钟" onclick="showPic(this);return false;">大钟</a>
+    </li>  
+  </ul>
+  <img id="placeholder" src="images/placeholder.gif" alt="my image gallery">
+  <p id="description"> Choose an image. </p>
+
+  <script>
+  function showPic(whichPic){
+    var source = whichPic.getAttribute("href");
+    var placeholder = document.getElementById("placeholder");
+    placeholder.setAttribute("src",source);
+    // placeholder.src = source; // 等价于setAttribute
+    var text = whichPic.getAttribute("title");
+    var description = document.getElementById("description");
+    description.firstChild.nodeValue = text;
+    // debugger;
+  }
+  function countBodyChildren() {
+    var body_element = document.getElementsByTagName("body")[0];
+    // alert(body_element.childNodes.length);
+    console.log(body_element.childNodes);
+    console.log(body_element.childNodes.length);
+  }
+  window.onload = countBodyChildren;
+
+  </script>
+</body>
+</html>

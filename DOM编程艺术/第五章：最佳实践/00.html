@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+  <a href="javascript:popUp('https://www.jd.com');">open jd</a>
+  <a href="https://www.jd.com" onclick="popUp('https://www.taobao.com'); return false;">open taobao</a>
+  <script>
+    // window.open(url, name, features)
+    function popUp(winURL) {
+        window.open(winURL, "popUp", "width=320; height=480");
+    }
+
+  </script>
+</body>
+</html>

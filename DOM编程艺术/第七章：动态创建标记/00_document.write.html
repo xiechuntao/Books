@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+<div id="testDiv">
+  <p>This is <em>my</em> content. </p>
+</div>
+
+<script>
+  // 违背了“行为应该与表现分离”原则
+  // document.write("this is inserted;")
+
+  insertParagraph("This is inserted")
+  function insertParagraph(text) {
+    var str = "<p>";
+    str += text;
+    str += "</p>";
+    document.write(str);
+  }
+
+  window.onload = function(){
+    var testDiv = document.getElementById("testDiv");
+    alert(testDiv.innerHTML)
+    alert(testDiv.innerTEXT)
+  }
+  </script>
+</body>
+</html>
