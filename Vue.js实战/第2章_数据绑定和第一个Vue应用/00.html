@@ -12,19 +12,14 @@
 
 <body>
   <div id="app">
-    <ul>
-      <li v-for="book in books">{{book.name}}</li>
-    </ul>
+    <input type="text" v-model="value" placeholder="你的名字是">
+    <h4>你好，{{value}}</h4>
   </div>
   <script>
     new Vue({
       el: '#app',
       data: {
-        books: [
-          {name: '《平凡的世界》'},
-          {name: '《月亮与六便士》'},
-          {name: '《飞鸟集》'},
-        ]
+        value:''
       }
     })
   </script>
