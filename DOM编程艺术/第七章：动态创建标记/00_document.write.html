@@ -26,9 +26,22 @@
 
   window.onload = function(){
     var testDiv = document.getElementById("testDiv");
-    alert(testDiv.innerHTML)
-    alert(testDiv.innerTEXT)
+    // 注意区分大小写
+    console.log(testDiv.innerHTML)
+    console.warn(testDiv.innerText)
   }
+  </script>
+  <script>
+    var para = document.createElement('p');
+    var info = "nodeName";
+    info += para.nodeName;
+    info += " nodeType ";
+    info += para.nodeType;
+    console.error(info);
+    // document.createTextNode(txt);
+    var txt = document.createTextNode('Hello World');
+    para.appendChild(txt);
+
   </script>
 </body>
 </html>

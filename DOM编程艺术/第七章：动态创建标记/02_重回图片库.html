@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    body {
+      color: #333;
+      background-color: #ccc;
+      margin: 1em 10%;
+    }
+
+    h1 {
+      color: #333;
+      background-color: transparent;
+    }
+
+    a {
+      color: #c60;
+      background-color: transparent;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    ul {
+      padding: 0;
+    }
+
+    li {
+      float: left;
+      padding: 1em;
+      list-style: none;
+    }
+
+    img {
+      display: block;
+      clear: both;
+    }
+
+    #imagegallery {
+      list-style: none;
+    }
+
+    #imagegallery li {
+      display: inline;
+    }
+
+    #imagegallery li a img {
+      border: 0;
+    }
+  </style>
+  <title>Image Gallery</title>
+</head>
+
+<body>
+  <h1>Snapshots</h1>
+  <ul id="imagegallery">
+    <li>
+      <a href="images/fireworks.jpg" title="一场烟花表演">
+        <img src="images/thumbnail_fireworks.jpg">
+      </a>
+    </li>
+    <li>
+      <a href="images/coffee.jpg" title="一杯黑咖啡">
+        <img src="images/thumbnail_coffee.jpg">
+      </a>
+    </li>
+    <li>
+      <a href="images/rose.jpg" title="一朵红红的玫瑰">
+        <img src="images/thumbnail_rose.jpg">
+      </a>
+    </li>
+    <li>
+      <a href="images/bigben.jpg" title="一口著名的钟">
+        <img src="images/thumbnail_bigben.jpg">
+      </a>
+    </li>
+  </ul>
+  <!-- 动态插入 -->
+  <!-- <img id="placeholder" src="images/placeholder.gif" alt="my image gallery"> -->
+  <!-- <p id="description"> Choose an image. </p> -->
+
+  <script type="text/html">
+    // 结构化程序设计备忘
+    // 就是说函数只有一个入口和出口
+    // 作者认为，如果一个函数有多个出口，只要这些出口集中出现在函数开头的部分，就是可以接受的。
+    // 不好的实践
+    function prepareGallery() {
+    if(document.getElementsByTagName) {
+    if(document.getElementById) {
+    if(document.getElementById("imagegallery")) {
+    // ...
+    }
+    }
+    }
+    }
+    // 好的实践
+    function prepareGallery() {
+    if(!document.getElementsByTagName) return false;
+    if(!document.getElementById) return false;
+    if(!document.getElementById("imagegallery")) return false;
+    // ...
+    }
+  </script>
+  <script>
+    // prepareGallery();
+    addLoadEvent(prepareGallery);
+    addLoadEvent(preparePlaceholder);
+
+    function addLoadEvent(func) {
+      // 把现有的window.onload 存入变量
+      var oldonload = window.onload;
+      if (typeof window.onload != 'function') {
+        // 如果这个函数还没有绑定上任何函数，那么就像平时那样把新函数添加给它
+        window.onload = func;
+      } else {
+        // 如果这个函数以及绑定了新函数，就将新函数追加到现有指令的末尾
+        window.onload = function () {
+          oldonload();
+          func();
+        }
+      }
+    }
+
+    // 封装insertAfter函数
+    function insertAfter(newElement, targetElement) {
+      var parent = targetElement.parentNode;
+      if (parent.lastChild == targetElement) {
+        parent.appendChild(newElement);
+      } else {
+        parent.insertBefore(newElement, targetElement.nextSibling);
+      }
+    }
+    // 动态创建占位图
+    function preparePlaceholder() {
+      if (!document.createElement) return false;
+      if (!document.createTextNode) return false;
+      if (!document.getElementById) return false;
+      if (!document.getElementById("imagegallery")) return false;
+      var placeholder = document.createElement("img");
+      placeholder.setAttribute("id", "placeholder");
+      placeholder.setAttribute("src", "images/placeholder.gif");
+      placeholder.setAttribute("alt", "my image gallery");
+      var description = document.createElement("p");
+      description.setAttribute("id", "description");
+      var desctext = document.createTextNode("Choose an image");
+      description.appendChild(desctext);
+
+      // document.getElementsByTagName("body")[0].appendChild(placeholder);
+      // document.getElementsByTagName("body")[0].appendChild(description);
+
+      var gallery = document.getElementById("imagegallery");
+      // gallery.parentNode.insertBefore(placeholder,gallery);
+      insertAfter(placeholder, gallery);
+      insertAfter(description, placeholder);
+    }
+
+    function prepareGallery() {
+      if (!document.getElementsByTagName) return false;
+      if (!document.getElementById) return false;
+      if (!document.getElementById("imagegallery")) return false;
+      // ...
+      // 以下代码就可把绑定在a标签上的onclick实践删除了
+      var gallery = document.getElementById("imagegallery");
+      var links = gallery.getElementsByTagName("a");
+      for (var i = 0; i < links.length; i++) {
+        links[i].onclick = function () {
+          return showPic(this) ? false : true;
+          // showPic(this);
+          // return false;
+          // return !showPic(this)
+        }
+      }
+    }
+
+    function showPic(whichPic) {
+      if (!document.getElementById("placeholder")) return false;
+      var source = whichPic.getAttribute("href");
+      var placeholder = document.getElementById("placeholder");
+      if (placeholder.nodeName != "IMG") return false;
+      placeholder.setAttribute("src", source);
+      // placeholder.src = source; // 等价于setAttribute
+      if (document.getElementById("description")) {
+        // var text = whichPic.getAttribute("title");
+        // => 完善判断
+        // if (whichPic.getAttribute("title")) {
+        //   var text = whichPic.getAttribute("title")
+        // } else {
+        //   var text = ""
+        // }
+        // =>三目缩写为
+        var text = whichPic.getAttribute("title") ? whichPic.getAttribute("title") : "";
+
+        var description = document.getElementById("description");
+        description.firstChild.nodeValue = text;
+      }
+      return true; // 友谊功能？？？
+    }
+
+    // 入口函数的封装
+    // function addLoadEvent() {
+    //   firstFunction();
+    //   secondFunction();
+    // }
+  </script>
+</body>
+
+</html>

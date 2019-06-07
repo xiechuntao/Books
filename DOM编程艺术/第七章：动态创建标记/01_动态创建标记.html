@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+<div id="testDiv">
+</div>
+
+<script>
+// <p>This is <em>my</em> content.</p>
+// 步骤分解
+// 一个文本节点，内容为‘this is’,
+// 一个元素节点，内容为‘em’,包含一个文本节点‘my’,
+// 一个文本节点，内容为‘content’,
+window.onload = function () {
+  // 创建一个最外层标签，‘p’;
+  var para = document.createElement("p");
+  // 创建文本节点，‘this’
+  var txt1 = document.createTextNode("This is");
+  // 插入文本节点
+  para.appendChild(txt1);
+  // 创建标签em
+  var emphasis = document.createElement("em");
+  // 创建第二个文本节点，‘my’
+  var txt2 = document.createTextNode("my");
+  // 插入em标签内
+  emphasis.appendChild(txt2);
+  // 把包含节点的元素插入
+  para.appendChild(emphasis);
+  // 创建第三个文本节点‘content.’,
+  var txt3 = document.createTextNode(" content.");
+  // 插入第三个节点
+  para.appendChild(txt3);
+  // 获取目标元素
+  var testDiv = document.getElementById("testDiv");
+  // 插入目标
+  testDiv.appendChild(para);
+}
+// => 也可以换一种顺序去写
+</script>
+</body>
+</html>
