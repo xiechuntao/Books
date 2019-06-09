@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="value" placeholder="你的名字是">
+    <h4 v-if="show">你好，{{value}}</h4>
+    <button @click="show = !show">click me</button>
+  </div>
+  <script>
+    // $(document).click(()=>{
+    //   debugger
+    //   vm.show = !vm.show;
+    // })
+    var myData = '哈哈哈'
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        value: myData,
+        show: true
+      }
+    })
+    console.log(vm.value)
+    // 直接可以在控制台修改vm.value
+  </script>
+</body>
+
+</html>

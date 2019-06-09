@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <style>
+  .active {
+    color: red;
+  }
+  .big {
+    transform: scale(1.2)
+  }
+  .error {
+    border: 1px solid red;
+  }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1 class="defalut" :class="classes" @click="active = !active;big = !big">
+      NAME: 嘎嘎
+    </h1>
+   
+  </div>
+  <script>
+    var myData = '哈哈哈'
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        active: false,
+        big: !true,
+        firstName: '谢',
+        lastName: '春桃',
+        size: 'large',
+        disabled: true
+      },
+      
+      computed: {
+        classes: function(){
+          return ['btn',{
+            ['btn-' + this.size]: this.size !== '',
+            ['btn-disabled']: this.disabled
+          }]
+        }
+      }
+    })
+    console.log(vm.value)
+    // 直接可以在控制台修改vm.value
+  </script>
+</body>
+
+</html>

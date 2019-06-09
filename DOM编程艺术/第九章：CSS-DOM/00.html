@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    p {
+      color: gray !important;
+      font-family: 'Arial' 'sans-serif';
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <p id="example" style="color: red;font-family: 'Courier New', Courier, monospace">一个段落例子</p>
+  一个段落例子
+  <script>
+    var paras = document.getElementsByTagName("p");
+    var para = document.getElementById("example");
+    for(var i=0; i<paras.length; i++) {
+      paras[i].onclick = function() {
+        console.log("You clicked on a paragraph.")
+        console.log(typeof para.nodeName); // string
+        console.log(typeof para.style); // object
+        console.log(para.style.color); // red
+        console.log(para.style.fontFamily); // 驼峰命名法
+        debugger
+      }
+    }
+  </script>
+</body>
+</html>
