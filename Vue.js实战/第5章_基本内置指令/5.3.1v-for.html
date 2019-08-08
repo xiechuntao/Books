@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <style>
+ 
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 还可以遍历对象 -->
+    <p v-for="(val,key,index) in user"> {{val + key + index}} </p>
+    <!-- 迭代整数 -->
+    <span v-for="i in 99">{{i}} </br> </span>
+    <template v-if="type === 'name'">
+      <label> 用户名： </label>
+      <input type="text" key="name" placeholder="请输入用户名">
+    </template> 
+    <template v-else>
+        <label> 邮箱： </label>
+        <input type="text"  key="email" placeholder="请输入邮箱">
+      </template>   
+      <button @click="handleToggleClick"> toggle </button>
+  </div>
+  <script>
+    var myData = '哈哈哈'
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        type: 'name',
+        user: {
+          name: '春涛',
+          age: 25,
+          gender: '男'
+        }
+      },
+      methods: {
+        // 如果不使用key ，会复用， 输入值就无法清空
+        handleToggleClick: function(){
+          this.type = this.type === 'name' ? 'email' : 'name';
+        }
+      },
+     
+    })
+    console.log(vm.value)
+    // 直接可以在控制台修改vm.value
+  </script>
+</body>
+
+</html>

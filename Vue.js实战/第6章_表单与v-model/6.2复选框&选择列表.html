@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <style>
+
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+       <input type="checkbox" v-model="toggle" :true-value="value1" :false-value="value2">
+       <label> 复选框 </label>
+       <p>{{toggle}}</p>
+       <p>{{value1}}</p>
+       <p>{{value2}}</p>
+
+       <!-- 选择列表 -->
+       <select name="" id="" v-model="selected">
+           <option :value="{number:123}">123</option>
+       </select>
+       {{selected.number}}
+    </div>
+    <script>
+        var myData = '哈哈哈'
+        var vm = new Vue({
+            el: '#app',
+            data: {
+               toggle: false,
+               value1: '渣渣渣',
+               value2: '嘎嘎嘎',
+               selected: ''
+
+            },
+            computed: {
+                filterBooks: function() {
+                    return this.books.filter(function(book) {
+                        return book.author.match(/新海诚/);
+                    })
+                },
+                sortedBooks: function(){
+                  return this.books.sort(function(a,b){
+                    return a.name.length < b.name.length;
+                  })
+                }
+            },
+            methods: {
+                // 如果不使用key ，会复用， 输入值就无法清空
+                handleToggleClick: function() {
+                    this.type = this.type === 'name' ? 'email' : 'name';
+                }
+            },
+
+        })
+        console.log(vm.value)
+        // 直接可以在控制台修改vm.value
+    </script>
+</body>
+
+</html>

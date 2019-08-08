@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <style>
+ 
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+      <!-- .lazy 在失去焦点后才刷新 -->
+      <!-- .trim 去除字首和字尾的空格 -->
+    <input type="text" v-model.lazy.trim="message">
+    <p>{{message}}</p>
+  </div>
+  <script>
+   var app = new Vue({
+     el: '#app',
+     data: {
+       message: 123
+     }
+   })
+  </script>
+</body>
+
+</html>

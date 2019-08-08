@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <style>
+
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        点击此次数 : {{counter}}
+        <button @click="counter ++">+1</button>
+        <hr>
+        <button> +1 </button>
+        <button @click="handleAdd()"> +1 </button>
+        <button @click="handleAdd(10)"> +10 </button>
+    </div>
+    <script>
+        var myData = '哈哈哈'
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                counter: -20
+            },
+            computed: {
+            },
+            methods: {
+                handleAdd(n){
+                    let num = n || 1;
+                    this.counter += num;
+                }
+            },
+
+        })
+        console.log(vm.value)
+        // 直接可以在控制台修改vm.value
+    </script>
+</body>
+
+</html>

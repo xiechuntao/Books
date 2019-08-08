@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+    <title>购物车</title>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <template v-if="list.length">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>商品名称</th>
+                        <th>商品单价</th>
+                        <th>购买数量</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item, index) in list">
+                        <td> {{ index + 1 }} </td>
+                        <td> {{ item.name }} </td>
+                        <td> {{ item.price }} </td>
+                        <td>
+                            <button @click="handleReduce(index)" :disabled="item.count === 1"> - </button>
+                            {{item.count}}
+                            <button @click="handleAdd(index)"> + </button>
+                        </td>
+                        <td>
+                            <button @click="handleRemove(index)"> 刪除 </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>总价： ￥ {{ totalPrice }} </div>
+        </template>
+        <div v-else> 购物车为空 </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                list: [{
+                        id: 1,
+                        name: 'iphone XR',
+                        price: 4588,
+                        count: 1
+                    },
+                    {
+                        id: 2,
+                        name: 'iPad Pro',
+                        price: 7288,
+                        count: 1
+                    },
+                    {
+                        id: 3,
+                        name: 'MacBook Pro',
+                        price: 148888,
+                        count: 1
+                    }
+                ]
+            },
+            computed: {
+                totalPrice: function() {
+                    var total = 0;
+                    for (var i = 0; i < this.list.length; i++) {
+                        var item = this.list[i];
+                        total += item.price * item.count;
+                    }
+
+                    // return total;
+                    // todo 千位分隔符
+                    return total.toString().replace(/\B(?=(\d{3})+$)/g, ',')
+                }
+            },
+            methods: {
+                handleReduce(index) {
+                    if (this.list[index].count === 1) return;
+                    this.list[index].count--;
+                },
+                handleAdd(index) {
+                    this.list[index].count++
+                },
+                handleRemove(index) {
+                    // todo 刪除
+                    this.list.splie(index, 1)
+                }
+            },
+            create() {}
+        })
+        // 直接可以在控制台修改vm.value
+    </script>
+</body>
+
+</html>

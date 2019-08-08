@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+  <style>
+  .active {
+    color: red;
+  }
+  .big {
+    transform: scale(1.2)
+  }
+  .error {
+    border: 1px solid red;
+  }
+
+  [v-cloak] {
+    display: none;
+  }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 会改插值 -->
+    <input type="text" v-model="msg">
+    <!-- 不会改插值 -->
+    <input type="text" :value="msg">
+    <h1 v-cloak>
+      {{msg}}
+    </h1>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        msg: '465',
+        active: false,
+        big: !true,
+        firstName: '谢',
+        lastName: '春桃',
+        fullName: '谢春涛'
+      },
+      
+      computed: {
+      }
+    })
+    console.log(vm.value)
+    // 直接可以在控制台修改vm.value
+  </script>
+</body>
+
+</html>
